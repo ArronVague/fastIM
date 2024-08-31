@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-//定义一个结构体
+// ResponseData 定义一个结构体
 type ResponseData struct {
 	Code int         `json:"code"`
 	Msg  string      `json:"msg"`
@@ -21,22 +21,22 @@ type H struct {
 	Total interface{} `json:"total,omitempty"`
 }
 
-//失败的返回结果
+// RespFail 失败的返回结果
 func RespFail(writer http.ResponseWriter, msg string) {
 	Resp(writer, -1, nil, msg)
 }
 
-//返回成功
+// RespOk 返回成功
 func RespOk(writer http.ResponseWriter, data interface{}, msg string) {
 	Resp(writer, 0, data, msg)
 }
 
-//返回列表数据
+// RespOkList 返回列表数据
 func RespOkList(w http.ResponseWriter, lists interface{}, total interface{}) {
-	RespList(w,0,lists,total)
+	RespList(w, 0, lists, total)
 }
 
-//返回列表
+// RespList 返回列表
 func RespList(w http.ResponseWriter, code int, data interface{}, total interface{}) {
 	w.Header().Set("Content-Type", "application/json")
 	//设置200状态
@@ -73,4 +73,3 @@ func Resp(writer http.ResponseWriter, code int, data interface{}, msg string) {
 	//返回json ok
 	writer.Write(ret)
 }
-

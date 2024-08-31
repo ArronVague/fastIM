@@ -1,13 +1,14 @@
 package controller
 
 import (
-	"fastIM/app/util"
 	"fmt"
 	"io"
 	"net/http"
 	"os"
 	"strings"
 	"time"
+
+	"fastIM/app/util"
 )
 
 func init() {
@@ -53,7 +54,3 @@ func UploadLocal(writer http.ResponseWriter, request *http.Request) {
 
 	util.RespOk(writer, filepath, "")
 }
-
-
-
-

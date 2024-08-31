@@ -1,10 +1,11 @@
 package main
 
 import (
-	"fastIM/app/controller"
 	"html/template"
 	"log"
 	"net/http"
+
+	"fastIM/app/controller"
 )
 
 //10行代码实现万能注册模版

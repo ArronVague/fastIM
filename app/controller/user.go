@@ -1,10 +1,11 @@
 package controller
 
 import (
-"fastIM/app/model"
-"fastIM/app/service"
-"fastIM/app/util"
-"net/http"
+	"net/http"
+
+	"fastIM/app/model"
+	"fastIM/app/service"
+	"fastIM/app/util"
 )
 
 var UserService service.UserService

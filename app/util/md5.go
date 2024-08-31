@@ -6,27 +6,22 @@ import (
 	"strings"
 )
 
-func Md5Encode(data string) string{
-	h := md5.New()
-	h.Write([]byte(data)) // 需要加密的字符串为 123456
-	cipherStr := h.Sum(nil)
+func Md5Encode(data string) string {
+	h := md5.Sum([]byte(data))
 
-	return  hex.EncodeToString(cipherStr)
+	return hex.EncodeToString(h[:])
 }
 
-func MD5Encode(data string) string{
+func MD5Encode(data string) string {
 	return strings.ToUpper(Md5Encode(data))
 }
 
-//校验用户密码
-func ValidatePasswd(plainpwd,salt,passwd string) bool{
-	return Md5Encode(plainpwd+salt)==passwd
+// ValidatePasswd 校验用户密码
+func ValidatePasswd(plainPassword, salt, passwd string) bool {
+	return Md5Encode(plainPassword+salt) == passwd
 }
 
-//生成用户密码
-func MakePasswd(plainpwd,salt string) string{
-	return Md5Encode(plainpwd+salt)
+// MakePasswd 生成用户密码
+func MakePasswd(plainPassword, salt string) string {
+	return Md5Encode(plainPassword + salt)
 }
-
-
-

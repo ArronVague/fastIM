@@ -1,12 +1,13 @@
 package controller
 
 import (
+	"log"
+	"net/http"
+
 	"fastIM/app/args"
 	"fastIM/app/model"
 	"fastIM/app/service"
 	"fastIM/app/util"
-	"log"
-	"net/http"
 )
 
 var concatService service.ContactService
@@ -42,7 +43,7 @@ func CreateCommunity(w http.ResponseWriter, req *http.Request) {
 	var arg model.Community
 	//如果这个用的上,那么可以直接
 	util.Bind(req, &arg)
-	com, err := concatService.CreateCommunity(arg);
+	com, err := concatService.CreateCommunity(arg)
 	if err != nil {
 		util.RespFail(w, err.Error())
 	} else {
@@ -61,7 +62,7 @@ func JoinCommunity(w http.ResponseWriter, req *http.Request) {
 		util.RespFail(w, "您要加入的群不存在")
 	} else {
 		log.Printf("community id:%d", com.Id)
-		err := concatService.JoinCommunity(arg.Userid, com.Id);
+		err := concatService.JoinCommunity(arg.Userid, com.Id)
 		//刷新用户的群组信息
 		AddGroupId(arg.Userid, com.Id)
 		if err != nil {
@@ -80,4 +81,3 @@ func LoadCommunity(w http.ResponseWriter, req *http.Request) {
 	comunitys := concatService.SearchComunity(arg.Userid)
 	util.RespOkList(w, comunitys, len(comunitys))
 }
-

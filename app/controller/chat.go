@@ -12,7 +12,7 @@ import (
 	"gopkg.in/fatih/set.v0"
 )
 
-//本核心在于形成userid和Node的映射关系
+// Node 本核心在于形成userid和Node的映射关系
 type Node struct {
 	Conn *websocket.Conn
 	//并行转串行,
@@ -63,10 +63,12 @@ func dispatch(data []byte) {
 }
 
 //userid和Node映射关系表
-var clientMap map[int64]*Node = make(map[int64]*Node, 0)
+var clientMap map[int64]*Node = make(map[int64]*Node)
+
 //读写锁
 var rwlocker sync.RWMutex
-//实现聊天的功能
+
+// Chat 实现聊天的功能
 func Chat(writer http.ResponseWriter, request *http.Request) {
 	query := request.URL.Query()
 	id := query.Get("id")
@@ -111,7 +113,7 @@ func Chat(writer http.ResponseWriter, request *http.Request) {
 	sendMsg(userId, []byte("welcome!"))
 }
 
-//添加新的群ID到用户的groupset中
+// AddGroupId 添加新的群ID到用户的group set中
 func AddGroupId(userId, gid int64) {
 	//取得node
 	rwlocker.Lock()

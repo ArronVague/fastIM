@@ -9,6 +9,6 @@ type ContactArg struct {
 //添加新的成员
 type AddNewMember struct {
 	PageArg
-	Userid int64 `json:"userid" form:"userid"`
+	Userid  int64  `json:"userid" form:"userid"`
 	DstName string `json:"userid" form:"dstname"`
 }

@@ -2,11 +2,12 @@ package service
 
 import (
 	"errors"
-	"fastIM/app/model"
 	"time"
+
+	"fastIM/app/model"
 )
 
-type ContactService struct {}
+type ContactService struct{}
 
 //添加好友
 func (c *ContactService) AddFriend(userid int64, dstid int64) error {
