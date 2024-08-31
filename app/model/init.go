@@ -23,7 +23,9 @@ func init() {
 	//设置数据库连接数
 	DbEngine.SetMaxOpenConns(10)
 	//自动创建数据库
-	DbEngine.Sync(new(User), new(Community), new(Contact))
+	if err = DbEngine.Sync(new(User), new(Community), new(Contact)); err != nil {
+		panic(err)
+	}
 
 	fmt.Println("init database ok!")
 }
